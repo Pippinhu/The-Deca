@@ -1,0 +1,119 @@
+/* --- 全局与基础样式 --- */
+@import url("https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Noto Serif SC", serif; /* 优先使用思源宋体，衬线字体 */
+  background-color: #ffffff; /* 白色背景 */
+  color: #333333; /* 深灰色文字 */
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+/* --- 头部样式 --- */
+header {
+  text-align: center;
+  margin-bottom: 40px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #eaeaea;
+}
+
+header h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+header .subtitle {
+  font-size: 1rem;
+  color: #777;
+}
+
+/* --- 作品列表样式 --- */
+.work-item {
+  border-bottom: 1px solid #eaeaea;
+  margin-bottom: 16px;
+  overflow: hidden; /* 防止子元素溢出 */
+}
+
+/* 始终可见的摘要部分 */
+.work-summary {
+  display: flex;
+  align-items: center;
+  padding: 16px 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.work-summary:hover {
+  background-color: #f8f9fa; /* 鼠标悬停时有轻微反馈 */
+}
+
+.work-cover {
+  width: 80px;
+  height: 120px;
+  object-fit: cover;
+  margin-right: 20px;
+  border-radius: 4px;
+  flex-shrink: 0; /* 防止图片被压缩 */
+}
+
+.work-info h3 {
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.work-info .work-creator {
+  font-size: 0.9rem;
+  color: #6a7a8c; /* 点缀色：灰蓝色 */
+}
+
+/* 展开/收起图标 */
+.expand-icon {
+  margin-left: auto; /* 将图标推到最右侧 */
+  font-size: 2rem;
+  font-weight: 400;
+  color: #6a7a8c; /* 点缀色：灰蓝色 */
+  transition: transform 0.4s ease;
+}
+
+/* 可展开的详情部分 */
+.work-details {
+  /* 核心动画：通过 max-height 实现展开/收起 */
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.5s ease-in-out, padding 0.5s ease-in-out;
+  padding: 0 20px; /* 初始状态无上下内边距 */
+  color: #555;
+}
+
+.work-details p {
+  padding-bottom: 20px;
+}
+
+/* --- Active 状态 (由 JS 添加) --- */
+.work-item.active .work-summary {
+  /* 可以为激活状态添加一些视觉变化 */
+}
+
+.work-item.active .expand-icon {
+  transform: rotate(45deg); /* 将 "+" 旋转成 "×" */
+}
+
+.work-item.active .work-details {
+  max-height: 1000px; /* 设置一个足够大的值，确保内容能完全显示 */
+  padding: 10px 20px; /* 展开后恢复内边距 */
+}
